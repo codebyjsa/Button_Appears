@@ -1,5 +1,10 @@
-function displayMessage(message) {
-    document.getElementById('api_response').innerHTML += `<p>${message}</p>`;
+function displayData(data) {
+    // Convert the data object to a JSON string and display it
+    document.getElementById('api_response').innerHTML += `
+        <div style="border: 1px solid white; margin-top: 10px; padding: 10px;">
+            <strong>Title:</strong> ${data.title}<br>
+            <strong>Body:</strong> ${data.body}
+        </div>`;
 }
 
 function but() {
@@ -8,14 +13,10 @@ function but() {
         .then(response => response.json())
         .then(data => {
             console.log('First API Data:', data);
-            displayMessage('First API called successfully!');
-            // Show the second button after successful API call
+            displayData(data);  // Display the actual data on the page
             document.getElementById('sec_but').style.display = 'block';
         })
-        .catch(error => {
-            console.error('Error:', error);
-            displayMessage('First API call failed.');
-        });
+        .catch(error => console.error('Error:', error));
 }
 
 function but2() {
@@ -24,14 +25,10 @@ function but2() {
         .then(response => response.json())
         .then(data => {
             console.log('Second API Data:', data);
-            displayMessage('Second API called successfully!');
-            // Show the third button after successful API call
+            displayData(data);  // Display the actual data on the page
             document.getElementById('third_but').style.display = 'block';
         })
-        .catch(error => {
-            console.error('Error:', error);
-            displayMessage('Second API call failed.');
-        });
+        .catch(error => console.error('Error:', error));
 }
 
 function but3() {
@@ -40,11 +37,7 @@ function but3() {
         .then(response => response.json())
         .then(data => {
             console.log('Third API Data:', data);
-            displayMessage('Third API called successfully!');
-            // Perform any additional actions if needed
+            displayData(data);  // Display the actual data on the page
         })
-        .catch(error => {
-            console.error('Error:', error);
-            displayMessage('Third API call failed.');
-        });
+        .catch(error => console.error('Error:', error));
 }
